@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Web;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace RewardsPls
 {
@@ -36,6 +33,8 @@ namespace RewardsPls
 
             string json = response.Remove(response.Length - epilogueLength)
                 .Remove(0, prologueLength);
+
+            Thread.Sleep(250); // artificial rate limit
 
             return JObject.Parse(json);
         }
